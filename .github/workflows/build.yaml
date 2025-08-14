@@ -13,6 +13,17 @@ jobs:
           cache: 'gradle'
       - name: Build
         run: ./gradlew build
+      - name: Build Debug APK  
+        run: ./gradlew assembleDebug  
+      - name: Build Release APK    
+        run: ./gradlew assembleRelease  
+      - name: Upload APKs  
+        uses: actions/upload-artifact@v4  
+        with:  
+          name: apk-files  
+          path: |  
+            app/build/outputs/apk/debug/*.apk  
+            app/build/outputs/apk/release/*.apk
   test:
     runs-on: ubuntu-latest
     steps:
